@@ -1,0 +1,30 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogGroup",
+				"logs:CreateLogStream",
+				"logs:PutLogEvents"
+			],
+			"Resource": "arn:aws:logs:eu-west-1:851725455277:log-group:/aws/lambda/your-ticket-function-name:*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"dynamodb:PutItem",
+				"dynamodb:GetItem",
+				"dynamodb:DeleteItem",
+				"dynamodb:Scan",
+				"dynamodb:UpdateItem"
+			],
+			"Resource": "arn:aws:dynamodb:eu-west-1:851725455277:table/Tickets"
+		},
+		{
+			"Effect": "Allow",
+			"Action": "cognito-idp:AdminAddUserToGroup",
+			"Resource": "arn:aws:cognito-idp:eu-west-1:851725455277:userpool/eu-west-1_xxxxxxxx"
+		}
+	]
+}

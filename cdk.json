@@ -1,0 +1,4 @@
+{
+    "app": "node bin/aws_cdk_app.js"
+  }
+  
