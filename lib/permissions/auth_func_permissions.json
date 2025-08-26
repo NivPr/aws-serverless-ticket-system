@@ -1,0 +1,44 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogGroup"
+        ],
+        "Resource": "arn:aws:logs:eu-west-1:851725455277:*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "arn:aws:logs:eu-west-1:851725455277:log-group:/aws/lambda/AwsCdkAppStack-AuthFunc096F4DD9-flg1grgvli2x:*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "cognito-idp:AdminGetUser",
+          "cognito-idp:AdminAddUserToGroup",
+          "cognito-idp:SignUp",
+          "cognito-idp:ConfirmSignUp",
+          "cognito-idp:InitiateAuth"
+        ],
+        "Resource": "arn:aws:cognito-idp:eu-west-1:851725455277:userpool/eu-west-1_dqNuol3Fx"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:UpdateItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:Query",
+          "dynamodb:Scan"
+        ],
+        "Resource": "arn:aws:dynamodb:eu-west-1:851725455277:table/ticketAppUsers"
+      }
+    ]
+  }
+  

@@ -85,7 +85,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "423192973dc0f1e63925998473e717bc3e4fc8856c9503b9602b43caebfc795c.zip"
+     "S3Key": "42f3606723c031e89efe5a5bdcc172a827525c91a7dc71b940e1a197acdee4bb.zip"
     },
     "Handler": "index.handler",
     "Role": {
@@ -102,7 +102,133 @@
    ],
    "Metadata": {
     "aws:cdk:path": "AwsCdkAppStack/TicketFunc/Resource",
-    "aws:asset:path": "asset.423192973dc0f1e63925998473e717bc3e4fc8856c9503b9602b43caebfc795c",
+    "aws:asset:path": "asset.42f3606723c031e89efe5a5bdcc172a827525c91a7dc71b940e1a197acdee4bb",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AuthFuncServiceRole3555119C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/AuthFunc/ServiceRole/Resource"
+   }
+  },
+  "AuthFuncServiceRoleDefaultPolicy6F10E360": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "logs:CreateLogGroup",
+       "Effect": "Allow",
+       "Resource": "arn:aws:logs:eu-west-1:851725455277:*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:logs:eu-west-1:851725455277:log-group:/aws/lambda/AwsCdkAppStack-AuthFunc096F4DD9-flg1grgvli2x:*"
+      },
+      {
+       "Action": [
+        "cognito-idp:AdminGetUser",
+        "cognito-idp:AdminAddUserToGroup",
+        "cognito-idp:SignUp",
+        "cognito-idp:ConfirmSignUp",
+        "cognito-idp:InitiateAuth"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:cognito-idp:eu-west-1:851725455277:userpool/eu-west-1_dqNuol3Fx"
+      },
+      {
+       "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:dynamodb:eu-west-1:851725455277:table/ticketAppUsers"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AuthFuncServiceRoleDefaultPolicy6F10E360",
+    "Roles": [
+     {
+      "Ref": "AuthFuncServiceRole3555119C"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/AuthFunc/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "AuthFunc096F4DD9": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "808904978c156444b00ab0ca44ebf6a531d1e637f311e07b2124c47c57837eb2.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "CLIENT_ID": "5j03sgu6qsv2aoqinm0f7k895k",
+      "REGION": "eu-west-1",
+      "USER_POOL_ID": "eu-west-1_dqNuol3Fx",
+      "CLIENT_SECRET": "1sdlef08vaqgp3fjbktd349r6hj76qlmsgvjnmf7gmnsjf4k2he7"
+     }
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AuthFuncServiceRole3555119C",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x"
+   },
+   "DependsOn": [
+    "AuthFuncServiceRoleDefaultPolicy6F10E360",
+    "AuthFuncServiceRole3555119C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/AuthFunc/Resource",
+    "aws:asset:path": "asset.808904978c156444b00ab0ca44ebf6a531d1e637f311e07b2124c47c57837eb2",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -219,7 +345,7 @@
     "aws:cdk:path": "AwsCdkAppStack/MyApi/Account"
    }
   },
-  "MyApiDeploymentECB0D05Ef3f5440e8e0931ac191c4ac3b4dae674": {
+  "MyApiDeploymentECB0D05E92000a1c51d43e859bd1090d09d377f0": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "This service serves tickets.",
@@ -238,7 +364,9 @@
     "MyApiticketsdeleteDELETEF568D0C6",
     "MyApiticketsdeleteOPTIONSDA2C3C11",
     "MyApiticketsdeleteFE9292BC",
-    "MyApiticketsGET5E7E242C",
+    "MyApiticketseditTicketOPTIONSE3457DBB",
+    "MyApiticketseditTicketPUT708A637A",
+    "MyApiticketseditTicket07B0B25D",
     "MyApiticketsOPTIONS9C6CC032",
     "MyApitickets1C46F871",
     "MyApiticketssearchByTitleGETFA08B866",
@@ -263,7 +391,7 @@
      "Format": "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"user\":\"$context.identity.user\",\"caller\":\"$context.identity.caller\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.resourcePath\",\"status\":\"$context.status\",\"protocol\":\"$context.protocol\",\"responseLength\":\"$context.responseLength\"}"
     },
     "DeploymentId": {
-     "Ref": "MyApiDeploymentECB0D05Ef3f5440e8e0931ac191c4ac3b4dae674"
+     "Ref": "MyApiDeploymentECB0D05E92000a1c51d43e859bd1090d09d377f0"
     },
     "MethodSettings": [
      {
@@ -579,6 +707,194 @@
    },
    "Metadata": {
     "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/addTicket/POST/Resource"
+   }
+  },
+  "MyApiticketseditTicket07B0B25D": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "MyApitickets1C46F871"
+    },
+    "PathPart": "editTicket",
+    "RestApiId": {
+     "Ref": "MyApi49610EDF"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/editTicket/Resource"
+   }
+  },
+  "MyApiticketseditTicketOPTIONSE3457DBB": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'GET,POST,PUT,DELETE,OPTIONS'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "MyApiticketseditTicket07B0B25D"
+    },
+    "RestApiId": {
+     "Ref": "MyApi49610EDF"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/editTicket/OPTIONS/Resource"
+   }
+  },
+  "MyApiticketseditTicketPUTApiPermissionAwsCdkAppStackMyApi696462DDPUTticketseditTicket3D6CD97E": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "TicketFuncBD0241B6",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "MyApi49610EDF"
+       },
+       "/",
+       {
+        "Ref": "MyApiDeploymentStagedevDB491209"
+       },
+       "/PUT/tickets/editTicket"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/editTicket/PUT/ApiPermission.AwsCdkAppStackMyApi696462DD.PUT..tickets.editTicket"
+   }
+  },
+  "MyApiticketseditTicketPUTApiPermissionTestAwsCdkAppStackMyApi696462DDPUTticketseditTicket817F82A0": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "TicketFuncBD0241B6",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "MyApi49610EDF"
+       },
+       "/test-invoke-stage/PUT/tickets/editTicket"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/editTicket/PUT/ApiPermission.Test.AwsCdkAppStackMyApi696462DD.PUT..tickets.editTicket"
+   }
+  },
+  "MyApiticketseditTicketPUT708A637A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "COGNITO_USER_POOLS",
+    "AuthorizerId": {
+     "Ref": "MyCognitoAuthorizer538AD78E"
+    },
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "TicketFuncBD0241B6",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "MyApiticketseditTicket07B0B25D"
+    },
+    "RestApiId": {
+     "Ref": "MyApi49610EDF"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/editTicket/PUT/Resource"
    }
   },
   "MyApiticketsdeleteFE9292BC": {
@@ -1145,13 +1461,317 @@
     "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/{id}/GET/Resource"
    }
   },
-  "MyApiticketsGETApiPermissionAwsCdkAppStackMyApi696462DDGETticketsB5C699B0": {
+  "UserApiAccessLogs44175256": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "RetentionInDays": 731
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApiAccessLogs/Resource"
+   }
+  },
+  "UserApiB6C12381": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Description": "This service handles user authentication.",
+    "Name": "User Service"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Resource"
+   }
+  },
+  "UserApiCloudWatchRoleCD3B20A5": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "apigateway.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+       ]
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/CloudWatchRole/Resource"
+   }
+  },
+  "UserApiAccount52C5A50A": {
+   "Type": "AWS::ApiGateway::Account",
+   "Properties": {
+    "CloudWatchRoleArn": {
+     "Fn::GetAtt": [
+      "UserApiCloudWatchRoleCD3B20A5",
+      "Arn"
+     ]
+    }
+   },
+   "DependsOn": [
+    "UserApiB6C12381"
+   ],
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Account"
+   }
+  },
+  "UserApiDeployment24839811149419afdec04cc03199f8aa9d329930": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "This service handles user authentication.",
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "DependsOn": [
+    "UserApiauthloginOPTIONS7BA3DC7C",
+    "UserApiauthloginPOSTCF4BC188",
+    "UserApiauthlogin518176FA",
+    "UserApiauthOPTIONS92DA62B4",
+    "UserApiauth778C627A",
+    "UserApiauthsignUpOPTIONS62CD16EC",
+    "UserApiauthsignUpPOST40245CBE",
+    "UserApiauthsignUpBD854F2E",
+    "UserApiauthverifyCodeOPTIONSB50EC116",
+    "UserApiauthverifyCodePOSTCE0EE193",
+    "UserApiauthverifyCodeAA78A90C",
+    "UserApiOPTIONSC7FF09BC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Deployment/Resource",
+    "aws:cdk:do-not-refactor": true
+   }
+  },
+  "UserApiDeploymentStagedevD4572DA0": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "AccessLogSetting": {
+     "DestinationArn": {
+      "Fn::GetAtt": [
+       "UserApiAccessLogs44175256",
+       "Arn"
+      ]
+     },
+     "Format": "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"user\":\"$context.identity.user\",\"caller\":\"$context.identity.caller\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.resourcePath\",\"status\":\"$context.status\",\"protocol\":\"$context.protocol\",\"responseLength\":\"$context.responseLength\"}"
+    },
+    "DeploymentId": {
+     "Ref": "UserApiDeployment24839811149419afdec04cc03199f8aa9d329930"
+    },
+    "MethodSettings": [
+     {
+      "DataTraceEnabled": true,
+      "HttpMethod": "*",
+      "LoggingLevel": "INFO",
+      "MetricsEnabled": true,
+      "ResourcePath": "/*"
+     }
+    ],
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    },
+    "StageName": "dev"
+   },
+   "DependsOn": [
+    "UserApiAccount52C5A50A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/DeploymentStage.dev/Resource"
+   }
+  },
+  "UserApiOPTIONSC7FF09BC": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "UserApiB6C12381",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/OPTIONS/Resource"
+   }
+  },
+  "UserApiauth778C627A": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "UserApiB6C12381",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "auth",
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/Resource"
+   }
+  },
+  "UserApiauthOPTIONS92DA62B4": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "UserApiauth778C627A"
+    },
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/OPTIONS/Resource"
+   }
+  },
+  "UserApiauthsignUpBD854F2E": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "UserApiauth778C627A"
+    },
+    "PathPart": "signUp",
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/signUp/Resource"
+   }
+  },
+  "UserApiauthsignUpOPTIONS62CD16EC": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "UserApiauthsignUpBD854F2E"
+    },
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/signUp/OPTIONS/Resource"
+   }
+  },
+  "UserApiauthsignUpPOSTApiPermissionAwsCdkAppStackUserApiE4961334POSTauthsignUp3DEBA8F4": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "TicketFuncBD0241B6",
+      "AuthFunc096F4DD9",
       "Arn"
      ]
     },
@@ -1174,28 +1794,28 @@
        },
        ":",
        {
-        "Ref": "MyApi49610EDF"
+        "Ref": "UserApiB6C12381"
        },
        "/",
        {
-        "Ref": "MyApiDeploymentStagedevDB491209"
+        "Ref": "UserApiDeploymentStagedevD4572DA0"
        },
-       "/GET/tickets"
+       "/POST/auth/signUp"
       ]
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/GET/ApiPermission.AwsCdkAppStackMyApi696462DD.GET..tickets"
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/signUp/POST/ApiPermission.AwsCdkAppStackUserApiE4961334.POST..auth.signUp"
    }
   },
-  "MyApiticketsGETApiPermissionTestAwsCdkAppStackMyApi696462DDGETtickets85F020E1": {
+  "UserApiauthsignUpPOSTApiPermissionTestAwsCdkAppStackUserApiE4961334POSTauthsignUpC6A846A3": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "TicketFuncBD0241B6",
+      "AuthFunc096F4DD9",
       "Arn"
      ]
     },
@@ -1218,25 +1838,22 @@
        },
        ":",
        {
-        "Ref": "MyApi49610EDF"
+        "Ref": "UserApiB6C12381"
        },
-       "/test-invoke-stage/GET/tickets"
+       "/test-invoke-stage/POST/auth/signUp"
       ]
      ]
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/GET/ApiPermission.Test.AwsCdkAppStackMyApi696462DD.GET..tickets"
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/signUp/POST/ApiPermission.Test.AwsCdkAppStackUserApiE4961334.POST..auth.signUp"
    }
   },
-  "MyApiticketsGET5E7E242C": {
+  "UserApiauthsignUpPOST40245CBE": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
-    "AuthorizationType": "COGNITO_USER_POOLS",
-    "AuthorizerId": {
-     "Ref": "MyCognitoAuthorizer538AD78E"
-    },
-    "HttpMethod": "GET",
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
     "Integration": {
      "IntegrationHttpMethod": "POST",
      "Type": "AWS_PROXY",
@@ -1255,7 +1872,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "TicketFuncBD0241B6",
+          "AuthFunc096F4DD9",
           "Arn"
          ]
         },
@@ -1265,14 +1882,384 @@
      }
     },
     "ResourceId": {
-     "Ref": "MyApitickets1C46F871"
+     "Ref": "UserApiauthsignUpBD854F2E"
     },
     "RestApiId": {
-     "Ref": "MyApi49610EDF"
+     "Ref": "UserApiB6C12381"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "AwsCdkAppStack/MyApi/Default/tickets/GET/Resource"
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/signUp/POST/Resource"
+   }
+  },
+  "UserApiauthlogin518176FA": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "UserApiauth778C627A"
+    },
+    "PathPart": "login",
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/login/Resource"
+   }
+  },
+  "UserApiauthloginOPTIONS7BA3DC7C": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "UserApiauthlogin518176FA"
+    },
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/login/OPTIONS/Resource"
+   }
+  },
+  "UserApiauthloginPOSTApiPermissionAwsCdkAppStackUserApiE4961334POSTauthloginB20F6CFB": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthFunc096F4DD9",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "UserApiB6C12381"
+       },
+       "/",
+       {
+        "Ref": "UserApiDeploymentStagedevD4572DA0"
+       },
+       "/POST/auth/login"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/login/POST/ApiPermission.AwsCdkAppStackUserApiE4961334.POST..auth.login"
+   }
+  },
+  "UserApiauthloginPOSTApiPermissionTestAwsCdkAppStackUserApiE4961334POSTauthlogin988F4A98": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthFunc096F4DD9",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "UserApiB6C12381"
+       },
+       "/test-invoke-stage/POST/auth/login"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/login/POST/ApiPermission.Test.AwsCdkAppStackUserApiE4961334.POST..auth.login"
+   }
+  },
+  "UserApiauthloginPOSTCF4BC188": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthFunc096F4DD9",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "UserApiauthlogin518176FA"
+    },
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/login/POST/Resource"
+   }
+  },
+  "UserApiauthverifyCodeAA78A90C": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "UserApiauth778C627A"
+    },
+    "PathPart": "verifyCode",
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/verifyCode/Resource"
+   }
+  },
+  "UserApiauthverifyCodeOPTIONSB50EC116": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'POST,OPTIONS'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "UserApiauthverifyCodeAA78A90C"
+    },
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/verifyCode/OPTIONS/Resource"
+   }
+  },
+  "UserApiauthverifyCodePOSTApiPermissionAwsCdkAppStackUserApiE4961334POSTauthverifyCodeEBBF1AC1": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthFunc096F4DD9",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "UserApiB6C12381"
+       },
+       "/",
+       {
+        "Ref": "UserApiDeploymentStagedevD4572DA0"
+       },
+       "/POST/auth/verifyCode"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/verifyCode/POST/ApiPermission.AwsCdkAppStackUserApiE4961334.POST..auth.verifyCode"
+   }
+  },
+  "UserApiauthverifyCodePOSTApiPermissionTestAwsCdkAppStackUserApiE4961334POSTauthverifyCodeB2CD49AB": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthFunc096F4DD9",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:",
+       {
+        "Ref": "AWS::Region"
+       },
+       ":",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "UserApiB6C12381"
+       },
+       "/test-invoke-stage/POST/auth/verifyCode"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/verifyCode/POST/ApiPermission.Test.AwsCdkAppStackUserApiE4961334.POST..auth.verifyCode"
+   }
+  },
+  "UserApiauthverifyCodePOSTCE0EE193": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthFunc096F4DD9",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "UserApiauthverifyCodeAA78A90C"
+    },
+    "RestApiId": {
+     "Ref": "UserApiB6C12381"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsCdkAppStack/UserApi/Default/auth/verifyCode/POST/Resource"
    }
   },
   "CDKMetadata": {
@@ -1333,6 +2320,58 @@
       "/",
       {
        "Ref": "MyApiDeploymentStagedevDB491209"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "UserApiEndpoint22DD5314": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "UserApiB6C12381"
+      },
+      ".execute-api.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "UserApiDeploymentStagedevD4572DA0"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "authApiUrl": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "UserApiB6C12381"
+      },
+      ".execute-api.",
+      {
+       "Ref": "AWS::Region"
+      },
+      ".",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "UserApiDeploymentStagedevD4572DA0"
       },
       "/"
      ]

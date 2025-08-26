@@ -1,4 +1,4 @@
-const { createTicket, searchTicketsByTitle, deleteTicket } = require('./services/ticketService');
+const { createTicket, searchTicketsByTitle, deleteTicket, updateTicket } = require('./services/ticketService');
 
 exports.handler = async (event) => {
   console.log("Incoming Event:", JSON.stringify(event, null, 2));
@@ -6,7 +6,6 @@ exports.handler = async (event) => {
   try {
     const method = event.httpMethod;
     const path = event.path;
-    
     const claims = event.requestContext?.authorizer?.claims;
 
     console.log("Claims:", claims);
@@ -37,6 +36,16 @@ exports.handler = async (event) => {
         statusCode: 200,
         body: JSON.stringify({ message: "Ticket added!", data: result })
       };
+    }
+
+    if (method === "PUT" && path.endsWith("/tickets/editTicket")) {
+      if (!ticketId) 
+        return { statusCode: 400, body: JSON.stringify({ message: "Missing ticketId" }) };
+      
+      const updatedFields = { title, description, price, status };
+      Object.keys(updatedFields).forEach(key => updatedFields[key] === undefined && delete updatedFields[key]);
+      
+      return await updateTicket(ticketId, userId, updatedFields);
     }
 
     // GET /tickets/searchByTitle?keyword=...
