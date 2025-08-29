@@ -203,7 +203,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "f28f5667520e5ff7d7920ad59c84a1dc5195088e5284f1fea4598fdba88a991c.zip"
+     "S3Key": "1eb02b1ebca7b9d2c1e23a288bff760e82f644c936c156106c8cb944c00cb1e6.zip"
     },
     "Environment": {
      "Variables": {
@@ -228,7 +228,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "AwsCdkAppStack/AuthFunc/Resource",
-    "aws:asset:path": "asset.f28f5667520e5ff7d7920ad59c84a1dc5195088e5284f1fea4598fdba88a991c",
+    "aws:asset:path": "asset.1eb02b1ebca7b9d2c1e23a288bff760e82f644c936c156106c8cb944c00cb1e6",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
