@@ -1,6 +1,6 @@
 const apigateway = require('aws-cdk-lib/aws-apigateway');
 const logs = require('aws-cdk-lib/aws-logs');
-const { createAuthorizer } = require('../cognitoAuthorizer');
+const { createAuthorizer } = require('../authorizers/cognitoAuthorizer');
 
 
 function createApiGateway(scope, lambdaFunction) {
