@@ -2,8 +2,9 @@ name: Deploy AWS CDK Stack
 
 on:
   push:
+    # אם זה main -> פרודקשן, אחרת -> ניסוי
     branches:
-      - main  # Branch לפריסה אוטומטית
+      - '**'
 
 jobs:
   deploy:
@@ -36,6 +37,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      # 6️⃣ Deploy CDK Stack
+      # 6️⃣ Set branch environment variable
+      - name: Set branch name
+        run: echo "BRANCH_NAME=${GITHUB_REF_NAME#refs/heads/}" >> $GITHUB_ENV
+
+      # 7️⃣ Deploy CDK Stack
       - name: Deploy CDK Stack
-        run: cdk deploy AwsCdkAppStack --require-approval never
+        run: npx cdk deploy --require-approval never
+        env:
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
