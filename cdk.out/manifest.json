@@ -1,479 +1,473 @@
 {
   "version": "48.0.0",
   "artifacts": {
-    "AwsCdkAppStack.assets": {
+    "TestStack-dev.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "AwsCdkAppStack.assets.json",
+        "file": "TestStack-dev.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "AwsCdkAppStack": {
+    "TestStack-dev": {
       "type": "aws:cloudformation:stack",
-      "environment": "aws://unknown-account/unknown-region",
+      "environment": "aws://1234567890/eu-west-1",
       "properties": {
-        "templateFile": "AwsCdkAppStack.template.json",
+        "templateFile": "TestStack-dev.template.json",
         "terminationProtection": false,
         "validateOnSynth": false,
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/12cc198f79c752c7efa74ba6187b7337ce47fa81ff6452b36aca2d7b79fbf3e2.json",
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::1234567890:role/cdk-hnb659fds-deploy-role-1234567890-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::1234567890:role/cdk-hnb659fds-cfn-exec-role-1234567890-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-1234567890-eu-west-1/54fc4e25d5d3e458225d72d142873572ddc5c75736c25abfd7924188297a2e53.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "AwsCdkAppStack.assets"
+          "TestStack-dev.assets"
         ],
         "lookupRole": {
-          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "arn": "arn:${AWS::Partition}:iam::1234567890:role/cdk-hnb659fds-lookup-role-1234567890-eu-west-1",
           "requiresBootstrapStackVersion": 8,
           "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
         }
       },
       "dependencies": [
-        "AwsCdkAppStack.assets"
+        "TestStack-dev.assets"
       ],
       "metadata": {
-        "/AwsCdkAppStack/TicketFunc/ServiceRole/Resource": [
+        "/TestStack-dev/TicketFunc/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "TicketFuncServiceRole30348E59"
           }
         ],
-        "/AwsCdkAppStack/TicketFunc/ServiceRole/DefaultPolicy/Resource": [
+        "/TestStack-dev/TicketFunc/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "TicketFuncServiceRoleDefaultPolicyA88F8A04"
           }
         ],
-        "/AwsCdkAppStack/TicketFunc/Resource": [
+        "/TestStack-dev/TicketFunc/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "TicketFuncBD0241B6"
           }
         ],
-        "/AwsCdkAppStack/AuthFunc/ServiceRole/Resource": [
+        "/TestStack-dev/AuthFunc/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthFuncServiceRole3555119C"
           }
         ],
-        "/AwsCdkAppStack/AuthFunc/ServiceRole/DefaultPolicy/Resource": [
+        "/TestStack-dev/AuthFunc/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthFuncServiceRoleDefaultPolicy6F10E360"
           }
         ],
-        "/AwsCdkAppStack/AuthFunc/Resource": [
+        "/TestStack-dev/AuthFunc/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthFunc096F4DD9"
           }
         ],
-        "/AwsCdkAppStack/MyCognitoAuthorizer/Resource": [
+        "/TestStack-dev/MyCognitoAuthorizer/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyCognitoAuthorizer538AD78E"
           }
         ],
-        "/AwsCdkAppStack/ApiAccessLogs/Resource": [
+        "/TestStack-dev/ApiAccessLogs/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ApiAccessLogsE9DF007D"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Resource": [
+        "/TestStack-dev/MyApi/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApi49610EDF"
           }
         ],
-        "/AwsCdkAppStack/MyApi/CloudWatchRole/Resource": [
+        "/TestStack-dev/MyApi/CloudWatchRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiCloudWatchRole2BEC1A9C"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Account": [
+        "/TestStack-dev/MyApi/Account": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiAccount13882D84"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Deployment/Resource": [
+        "/TestStack-dev/MyApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiDeploymentECB0D05E92000a1c51d43e859bd1090d09d377f0"
+            "data": "MyApiDeploymentECB0D05Eae97bfe9ce03eee6ece0c66fce6b1628"
           }
         ],
-        "/AwsCdkAppStack/MyApi/DeploymentStage.dev/Resource": [
+        "/TestStack-dev/MyApi/DeploymentStage.dev/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiDeploymentStagedevDB491209"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Endpoint": [
+        "/TestStack-dev/MyApi/Endpoint": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiEndpoint869ABE96"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/OPTIONS/Resource": [
+        "/TestStack-dev/MyApi/Default/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiOPTIONSDA752FC6"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApitickets1C46F871"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/OPTIONS/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsOPTIONS9C6CC032"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/addTicket/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/addTicket/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsaddTicket9F608716"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/addTicket/OPTIONS/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/addTicket/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsaddTicketOPTIONSAB569534"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/addTicket/POST/ApiPermission.AwsCdkAppStackMyApi696462DD.POST..tickets.addTicket": [
+        "/TestStack-dev/MyApi/Default/tickets/addTicket/POST/ApiPermission.TestStackdevMyApi8255DB72.POST..tickets.addTicket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketsaddTicketPOSTApiPermissionAwsCdkAppStackMyApi696462DDPOSTticketsaddTicket28E0B5BF"
+            "data": "MyApiticketsaddTicketPOSTApiPermissionTestStackdevMyApi8255DB72POSTticketsaddTicketB2BCB357"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/addTicket/POST/ApiPermission.Test.AwsCdkAppStackMyApi696462DD.POST..tickets.addTicket": [
+        "/TestStack-dev/MyApi/Default/tickets/addTicket/POST/ApiPermission.Test.TestStackdevMyApi8255DB72.POST..tickets.addTicket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketsaddTicketPOSTApiPermissionTestAwsCdkAppStackMyApi696462DDPOSTticketsaddTicketF9200D3C"
+            "data": "MyApiticketsaddTicketPOSTApiPermissionTestTestStackdevMyApi8255DB72POSTticketsaddTicketF5DAE862"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/addTicket/POST/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/addTicket/POST/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsaddTicketPOST5899369A"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/editTicket/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/editTicket/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketseditTicket07B0B25D"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/editTicket/OPTIONS/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/editTicket/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketseditTicketOPTIONSE3457DBB"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/editTicket/PUT/ApiPermission.AwsCdkAppStackMyApi696462DD.PUT..tickets.editTicket": [
+        "/TestStack-dev/MyApi/Default/tickets/editTicket/PUT/ApiPermission.TestStackdevMyApi8255DB72.PUT..tickets.editTicket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketseditTicketPUTApiPermissionAwsCdkAppStackMyApi696462DDPUTticketseditTicket3D6CD97E"
+            "data": "MyApiticketseditTicketPUTApiPermissionTestStackdevMyApi8255DB72PUTticketseditTicketB4553879"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/editTicket/PUT/ApiPermission.Test.AwsCdkAppStackMyApi696462DD.PUT..tickets.editTicket": [
+        "/TestStack-dev/MyApi/Default/tickets/editTicket/PUT/ApiPermission.Test.TestStackdevMyApi8255DB72.PUT..tickets.editTicket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketseditTicketPUTApiPermissionTestAwsCdkAppStackMyApi696462DDPUTticketseditTicket817F82A0"
+            "data": "MyApiticketseditTicketPUTApiPermissionTestTestStackdevMyApi8255DB72PUTticketseditTicket5C066E5A"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/editTicket/PUT/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/editTicket/PUT/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketseditTicketPUT708A637A"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/delete/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/delete/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsdeleteFE9292BC"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/delete/OPTIONS/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/delete/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsdeleteOPTIONSDA2C3C11"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/delete/DELETE/ApiPermission.AwsCdkAppStackMyApi696462DD.DELETE..tickets.delete": [
+        "/TestStack-dev/MyApi/Default/tickets/delete/DELETE/ApiPermission.TestStackdevMyApi8255DB72.DELETE..tickets.delete": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketsdeleteDELETEApiPermissionAwsCdkAppStackMyApi696462DDDELETEticketsdeleteC79736DB"
+            "data": "MyApiticketsdeleteDELETEApiPermissionTestStackdevMyApi8255DB72DELETEticketsdelete67C4E006"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/delete/DELETE/ApiPermission.Test.AwsCdkAppStackMyApi696462DD.DELETE..tickets.delete": [
+        "/TestStack-dev/MyApi/Default/tickets/delete/DELETE/ApiPermission.Test.TestStackdevMyApi8255DB72.DELETE..tickets.delete": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketsdeleteDELETEApiPermissionTestAwsCdkAppStackMyApi696462DDDELETEticketsdelete4C820F94"
+            "data": "MyApiticketsdeleteDELETEApiPermissionTestTestStackdevMyApi8255DB72DELETEticketsdelete22324C4A"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/delete/DELETE/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/delete/DELETE/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsdeleteDELETEF568D0C6"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/searchByTitle/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/searchByTitle/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketssearchByTitle423C13ED"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/searchByTitle/OPTIONS/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/searchByTitle/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketssearchByTitleOPTIONS4EB9D206"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/searchByTitle/GET/ApiPermission.AwsCdkAppStackMyApi696462DD.GET..tickets.searchByTitle": [
+        "/TestStack-dev/MyApi/Default/tickets/searchByTitle/GET/ApiPermission.TestStackdevMyApi8255DB72.GET..tickets.searchByTitle": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketssearchByTitleGETApiPermissionAwsCdkAppStackMyApi696462DDGETticketssearchByTitleAA6F3C93"
+            "data": "MyApiticketssearchByTitleGETApiPermissionTestStackdevMyApi8255DB72GETticketssearchByTitle6C5A0CEF"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/searchByTitle/GET/ApiPermission.Test.AwsCdkAppStackMyApi696462DD.GET..tickets.searchByTitle": [
+        "/TestStack-dev/MyApi/Default/tickets/searchByTitle/GET/ApiPermission.Test.TestStackdevMyApi8255DB72.GET..tickets.searchByTitle": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketssearchByTitleGETApiPermissionTestAwsCdkAppStackMyApi696462DDGETticketssearchByTitleA9620433"
+            "data": "MyApiticketssearchByTitleGETApiPermissionTestTestStackdevMyApi8255DB72GETticketssearchByTitleB8DBC4C4"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/searchByTitle/GET/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/searchByTitle/GET/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketssearchByTitleGETFA08B866"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/{id}/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/{id}/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsid8A19D699"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/{id}/OPTIONS/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/{id}/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsidOPTIONS1734BE2E"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/{id}/GET/ApiPermission.AwsCdkAppStackMyApi696462DD.GET..tickets.{id}": [
+        "/TestStack-dev/MyApi/Default/tickets/{id}/GET/ApiPermission.TestStackdevMyApi8255DB72.GET..tickets.{id}": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketsidGETApiPermissionAwsCdkAppStackMyApi696462DDGETticketsidCCF2DBA3"
+            "data": "MyApiticketsidGETApiPermissionTestStackdevMyApi8255DB72GETticketsid9A940C89"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/{id}/GET/ApiPermission.Test.AwsCdkAppStackMyApi696462DD.GET..tickets.{id}": [
+        "/TestStack-dev/MyApi/Default/tickets/{id}/GET/ApiPermission.Test.TestStackdevMyApi8255DB72.GET..tickets.{id}": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "MyApiticketsidGETApiPermissionTestAwsCdkAppStackMyApi696462DDGETticketsid4F8A0E78"
+            "data": "MyApiticketsidGETApiPermissionTestTestStackdevMyApi8255DB72GETticketsidB564B746"
           }
         ],
-        "/AwsCdkAppStack/MyApi/Default/tickets/{id}/GET/Resource": [
+        "/TestStack-dev/MyApi/Default/tickets/{id}/GET/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "MyApiticketsidGET8A8974A9"
           }
         ],
-        "/AwsCdkAppStack/ApiUrl": [
+        "/TestStack-dev/ApiUrl": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ApiUrl"
           }
         ],
-        "/AwsCdkAppStack/UserApiAccessLogs/Resource": [
+        "/TestStack-dev/UserApiAccessLogs/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiAccessLogs44175256"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Resource": [
+        "/TestStack-dev/UserApi/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiB6C12381"
           }
         ],
-        "/AwsCdkAppStack/UserApi/CloudWatchRole/Resource": [
+        "/TestStack-dev/UserApi/CloudWatchRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiCloudWatchRoleCD3B20A5"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Account": [
+        "/TestStack-dev/UserApi/Account": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiAccount52C5A50A"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Deployment/Resource": [
+        "/TestStack-dev/UserApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UserApiDeployment24839811149419afdec04cc03199f8aa9d329930"
+            "data": "UserApiDeployment24839811c6ed45c69bac5b4e95ca60b491333b24"
           }
         ],
-        "/AwsCdkAppStack/UserApi/DeploymentStage.dev/Resource": [
+        "/TestStack-dev/UserApi/DeploymentStage.dev/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiDeploymentStagedevD4572DA0"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Endpoint": [
+        "/TestStack-dev/UserApi/Endpoint": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiEndpoint22DD5314"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/OPTIONS/Resource": [
+        "/TestStack-dev/UserApi/Default/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiOPTIONSC7FF09BC"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauth778C627A"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/OPTIONS/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthOPTIONS92DA62B4"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/signUp/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/signUp/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthsignUpBD854F2E"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/signUp/OPTIONS/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/signUp/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthsignUpOPTIONS62CD16EC"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/signUp/POST/ApiPermission.AwsCdkAppStackUserApiE4961334.POST..auth.signUp": [
+        "/TestStack-dev/UserApi/Default/auth/signUp/POST/ApiPermission.TestStackdevUserApi96FB4EDE.POST..auth.signUp": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UserApiauthsignUpPOSTApiPermissionAwsCdkAppStackUserApiE4961334POSTauthsignUp3DEBA8F4"
+            "data": "UserApiauthsignUpPOSTApiPermissionTestStackdevUserApi96FB4EDEPOSTauthsignUp038C26BF"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/signUp/POST/ApiPermission.Test.AwsCdkAppStackUserApiE4961334.POST..auth.signUp": [
+        "/TestStack-dev/UserApi/Default/auth/signUp/POST/ApiPermission.Test.TestStackdevUserApi96FB4EDE.POST..auth.signUp": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UserApiauthsignUpPOSTApiPermissionTestAwsCdkAppStackUserApiE4961334POSTauthsignUpC6A846A3"
+            "data": "UserApiauthsignUpPOSTApiPermissionTestTestStackdevUserApi96FB4EDEPOSTauthsignUpE156C6A9"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/signUp/POST/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/signUp/POST/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthsignUpPOST40245CBE"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/login/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/login/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthlogin518176FA"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/login/OPTIONS/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/login/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthloginOPTIONS7BA3DC7C"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/login/POST/ApiPermission.AwsCdkAppStackUserApiE4961334.POST..auth.login": [
+        "/TestStack-dev/UserApi/Default/auth/login/POST/ApiPermission.TestStackdevUserApi96FB4EDE.POST..auth.login": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UserApiauthloginPOSTApiPermissionAwsCdkAppStackUserApiE4961334POSTauthloginB20F6CFB"
+            "data": "UserApiauthloginPOSTApiPermissionTestStackdevUserApi96FB4EDEPOSTauthloginD5B5EA86"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/login/POST/ApiPermission.Test.AwsCdkAppStackUserApiE4961334.POST..auth.login": [
+        "/TestStack-dev/UserApi/Default/auth/login/POST/ApiPermission.Test.TestStackdevUserApi96FB4EDE.POST..auth.login": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UserApiauthloginPOSTApiPermissionTestAwsCdkAppStackUserApiE4961334POSTauthlogin988F4A98"
+            "data": "UserApiauthloginPOSTApiPermissionTestTestStackdevUserApi96FB4EDEPOSTauthlogin0C1EF1C1"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/login/POST/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/login/POST/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthloginPOSTCF4BC188"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/verifyCode/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/verifyCode/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthverifyCodeAA78A90C"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/verifyCode/OPTIONS/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/verifyCode/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthverifyCodeOPTIONSB50EC116"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/verifyCode/POST/ApiPermission.AwsCdkAppStackUserApiE4961334.POST..auth.verifyCode": [
+        "/TestStack-dev/UserApi/Default/auth/verifyCode/POST/ApiPermission.TestStackdevUserApi96FB4EDE.POST..auth.verifyCode": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UserApiauthverifyCodePOSTApiPermissionAwsCdkAppStackUserApiE4961334POSTauthverifyCodeEBBF1AC1"
+            "data": "UserApiauthverifyCodePOSTApiPermissionTestStackdevUserApi96FB4EDEPOSTauthverifyCodeF77EE44B"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/verifyCode/POST/ApiPermission.Test.AwsCdkAppStackUserApiE4961334.POST..auth.verifyCode": [
+        "/TestStack-dev/UserApi/Default/auth/verifyCode/POST/ApiPermission.Test.TestStackdevUserApi96FB4EDE.POST..auth.verifyCode": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UserApiauthverifyCodePOSTApiPermissionTestAwsCdkAppStackUserApiE4961334POSTauthverifyCodeB2CD49AB"
+            "data": "UserApiauthverifyCodePOSTApiPermissionTestTestStackdevUserApi96FB4EDEPOSTauthverifyCode4492179F"
           }
         ],
-        "/AwsCdkAppStack/UserApi/Default/auth/verifyCode/POST/Resource": [
+        "/TestStack-dev/UserApi/Default/auth/verifyCode/POST/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UserApiauthverifyCodePOSTCE0EE193"
           }
         ],
-        "/AwsCdkAppStack/AuthApiUrl": [
+        "/TestStack-dev/AuthApiUrl": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthApiUrl"
           }
         ],
-        "/AwsCdkAppStack/CDKMetadata/Default": [
+        "/TestStack-dev/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata"
           }
         ],
-        "/AwsCdkAppStack/CDKMetadata/Condition": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CDKMetadataAvailable"
-          }
-        ],
-        "/AwsCdkAppStack/BootstrapVersion": [
+        "/TestStack-dev/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/AwsCdkAppStack/CheckBootstrapVersion": [
+        "/TestStack-dev/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "AwsCdkAppStack"
+      "displayName": "TestStack-dev"
     },
     "Tree": {
       "type": "cdk:tree",

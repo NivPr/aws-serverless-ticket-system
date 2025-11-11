@@ -1,0 +1,51 @@
+{
+  "version": "48.0.0",
+  "files": {
+    "156eda99e5533a156a66851f55aa59206f3ed997df999a7c71ca30dccc4a0fa0": {
+      "displayName": "TicketFunc/Code",
+      "source": {
+        "path": "asset.156eda99e5533a156a66851f55aa59206f3ed997df999a7c71ca30dccc4a0fa0",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "1234567890-eu-west-1-8a615aaf": {
+          "bucketName": "cdk-hnb659fds-assets-1234567890-eu-west-1",
+          "objectKey": "156eda99e5533a156a66851f55aa59206f3ed997df999a7c71ca30dccc4a0fa0.zip",
+          "region": "eu-west-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::1234567890:role/cdk-hnb659fds-file-publishing-role-1234567890-eu-west-1"
+        }
+      }
+    },
+    "580f672dbe74b0c4c3623dc5b6b29e9e8b32e6f9f57d670bbc7e5af82092dca7": {
+      "displayName": "AuthFunc/Code",
+      "source": {
+        "path": "asset.580f672dbe74b0c4c3623dc5b6b29e9e8b32e6f9f57d670bbc7e5af82092dca7",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "1234567890-eu-west-1-f89fa1a2": {
+          "bucketName": "cdk-hnb659fds-assets-1234567890-eu-west-1",
+          "objectKey": "580f672dbe74b0c4c3623dc5b6b29e9e8b32e6f9f57d670bbc7e5af82092dca7.zip",
+          "region": "eu-west-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::1234567890:role/cdk-hnb659fds-file-publishing-role-1234567890-eu-west-1"
+        }
+      }
+    },
+    "54fc4e25d5d3e458225d72d142873572ddc5c75736c25abfd7924188297a2e53": {
+      "displayName": "TestStack-dev Template",
+      "source": {
+        "path": "TestStack-dev.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "1234567890-eu-west-1-945ea319": {
+          "bucketName": "cdk-hnb659fds-assets-1234567890-eu-west-1",
+          "objectKey": "54fc4e25d5d3e458225d72d142873572ddc5c75736c25abfd7924188297a2e53.json",
+          "region": "eu-west-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::1234567890:role/cdk-hnb659fds-file-publishing-role-1234567890-eu-west-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
