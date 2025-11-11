@@ -4,7 +4,7 @@ on:
   push:
     # אם זה main -> פרודקשן, אחרת -> ניסוי
     branches:
-      - '**'
+      - 'main'
 
 jobs:
   deploy:
