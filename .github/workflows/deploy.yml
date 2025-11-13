@@ -2,16 +2,17 @@ name: Deploy AWS CDK Stack
 
 on:
   push:
-    # אם זה main -> פרודקשן, אחרת -> ניסוי
+    # main -> production, אחרת -> dev
     branches:
-      - 'main'
+      - main
+      - dev
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Check out the repo
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -21,7 +22,7 @@ jobs:
         with:
           node-version: '18'
 
-      # 3️⃣ Install project dependencies
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
@@ -29,21 +30,32 @@ jobs:
       - name: Install AWS CDK
         run: npm install -g aws-cdk
 
-      # 5️⃣ Configure AWS credentials
+      # 5️⃣ Set environment variables based on branch
+      - name: Set environment variables
+        run: |
+          if [ "${GITHUB_REF_NAME}" == "main" ]; then
+            echo "ENV_NAME=prod" >> $GITHUB_ENV
+            echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID_PROD }}" >> $GITHUB_ENV
+            echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}" >> $GITHUB_ENV
+            echo "USER_POOL_ID=${{ secrets.USER_POOL_ID_PROD }}" >> $GITHUB_ENV
+          else
+            echo "ENV_NAME=dev" >> $GITHUB_ENV
+            echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID_DEV }}" >> $GITHUB_ENV
+            echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}" >> $GITHUB_ENV
+            echo "USER_POOL_ID=${{ secrets.USER_POOL_ID_DEV }}" >> $GITHUB_ENV
+          fi
+
+      # 6️⃣ Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
-
-      # 6️⃣ Set branch environment variable
-      - name: Set branch name
-        run: echo "BRANCH_NAME=${GITHUB_REF_NAME#refs/heads/}" >> $GITHUB_ENV
 
       # 7️⃣ Deploy CDK Stack
       - name: Deploy CDK Stack
         run: npx cdk deploy --require-approval never
         env:
-          BRANCH_NAME: ${{ env.BRANCH_NAME }}
-          USER_POOL_ID: ${{ secrets.USER_POOL_ID }}
+          ENV_NAME: ${{ env.ENV_NAME }}
+          USER_POOL_ID: ${{ env.USER_POOL_ID }}
