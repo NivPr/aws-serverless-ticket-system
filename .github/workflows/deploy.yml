@@ -46,5 +46,6 @@ jobs:
         run: npx cdk deploy --require-approval never
         env:
           BRANCH_NAME: ${{ env.BRANCH_NAME }}
+           USER_POOL_ID: ${{ secrets.USER_POOL_ID }}
            
           
